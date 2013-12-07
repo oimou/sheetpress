@@ -4,5 +4,14 @@ html
     meta(charset="utf-8")
     title Hello oimou
 
+    script(src='lib/requirejs/require.js')
+    script(src='js/requirejs-config.js')
+    script(src='js/main.js')
+
   body
-    h1 Hello oimou
+    #dest
+
+    script.sp-template(type='text/x-sp-template', data-sp-id='0AqpWvyIP5vbfdERTTWhTbjFOa1BFeldlWVdnRm9ESHc', data-sp-for='dest')
+      h1 <%= title %>
+      p <%= body %>
+

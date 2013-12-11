@@ -1,22 +1,28 @@
 (function(define) {
-  define(['jquery', 'tabletop'], function() {
+  define(['jquery', 'underscore', 'tabletop'], function() {
+    var _ = require('underscore');
+
     return {
       init: function() {
         var self = this;
         $('.sp-template').each(function() {
-          var id = $(this).attr('data-sp-id'); if (!id) return;
-          var targetId = $(this).attr('data-sp-for'); if (!id) return;
-          var $target = $(document.getElementById(targetId));
-
-          self.dispatch($(this), $target, id);
+          self.dispatch($(this), $(this));
         });
       },
 
-      dispatch: function($el, $target, id) {
+      dispatch: function($el, $template) {
+        var id = $template.attr('data-sp-id'); if (!id) return;
+        var targetId = $template.attr('data-sp-for'); if (!id) return;
+        var $target = $(document.getElementById(targetId));
+        var template = _.template($template.html());
+        $template.remove();
+
         Tabletop.init({
           key: id,
+          simpleSheet: true,
           callback: function(data, tabletop) {
-            $target.html(JSON.stringify(data));
+            var sheet = tabletop.data()[0];
+            $target.html(template(sheet));
           }
         });
       }

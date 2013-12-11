@@ -4,11 +4,12 @@
       init: function() {
         var self = this;
         $('.sp-template').each(function() {
-          self.dispatch($(this), $(this));
+          self.dispatch(this);
         });
       },
 
-      dispatch: function($el, $template) {
+      dispatch: function(el) {
+        var $template = $(el);
         var id = $template.attr('data-sp-id'); if (!id) return;
         var targetId = $template.attr('data-sp-for'); if (!id) return;
         var $target = $(document.getElementById(targetId));

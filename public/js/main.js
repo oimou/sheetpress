@@ -1,3 +1,3 @@
-require(['js/sheetpress'], function(SheetPress) {
+require(['sheetpress'], function(SheetPress) {
   SheetPress.init();
 });

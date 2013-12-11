@@ -1,7 +1,5 @@
 (function(define) {
   define(['jquery', 'underscore', 'tabletop'], function() {
-    var _ = require('underscore');
-
     return {
       init: function() {
         var self = this;
